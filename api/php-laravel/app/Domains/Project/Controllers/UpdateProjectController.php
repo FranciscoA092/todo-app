@@ -13,12 +13,12 @@ class UpdateProjectController
     ) {}
 
     public function __invoke(
-        UpdateProjectRequest $request, int $id
+        UpdateProjectRequest $request, int $project_id
     ): JsonResponse
     {
         $updatedProject = $this->action->execute(
             \App\Domains\Project\DTOs\UpdateProjectDTO::fromArray($request->validated()),
-            $id
+            $project_id
         );
 
         return response()->json($updatedProject);

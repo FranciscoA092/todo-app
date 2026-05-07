@@ -9,7 +9,7 @@ uses(RefreshDatabase::class);
 test('it updates a project', function () {
     $project = \App\Domains\Project\Models\Project::factory()->create();
 
-    $response = $this->putJson(route('projects.update', ['id' => $project->id]), [
+    $response = $this->putJson(route('projects.update', ['project_id' => $project->id]), [
         'title' => 'Updated Title',
         'description' => 'Updated Description',
     ]);
@@ -31,7 +31,7 @@ test('it updates a project', function () {
 test('it returns validation errors when updating a project with invalid data', function () {
     $project = \App\Domains\Project\Models\Project::factory()->create();
 
-    $response = $this->putJson(route('projects.update', ['id' => $project->id]), [
+    $response = $this->putJson(route('projects.update', ['project_id' => $project->id]), [
         'title' => '', // Invalid title
         'description' => '', // Invalid description
     ]);
@@ -41,7 +41,7 @@ test('it returns validation errors when updating a project with invalid data', f
 });
 
 test('it returns a 404 error when trying to update a non-existent project', function () {
-    $response = $this->putJson(route('projects.update', ['id' => 999]), [
+    $response = $this->putJson(route('projects.update', ['project_id' => 999]), [
         'title' => 'Updated Title',
         'description' => 'Updated Description',
     ]);
