@@ -2,6 +2,7 @@
 
 use App\Domains\Project\Controllers\IndexProjectController;
 use App\Domains\Project\Controllers\StoreProjectController;
+use App\Domains\Project\Controllers\UpdateProjectController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/projects', IndexProjectController::class)
@@ -9,3 +10,6 @@ Route::get('/projects', IndexProjectController::class)
 
 Route::post('/projects', StoreProjectController::class)
     ->name('projects.store');
+
+Route::put('/projects/{project}', UpdateProjectController::class)
+    ->name('projects.update');
