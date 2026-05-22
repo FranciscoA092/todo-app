@@ -4,6 +4,7 @@ use App\Domains\Project\Controllers\IndexProjectController;
 use App\Domains\Project\Controllers\DestroyProjectController;
 use App\Domains\Project\Controllers\StoreProjectController;
 use App\Domains\Project\Controllers\UpdateProjectController;
+use App\Domains\Task\Controllers\DestroyTaskController;
 use App\Domains\Task\Controllers\IndexTaskController;
 use App\Domains\Task\Controllers\StoreTaskController;
 use App\Domains\Task\Controllers\UpdateTaskController;
@@ -29,3 +30,6 @@ Route::get('/projects/{project}/tasks', IndexTaskController::class)
 
 Route::put('/projects/{project}/tasks/{task}', UpdateTaskController::class)
     ->name('projects.tasks.update');
+
+Route::delete('/projects/{project}/tasks/{task}', DestroyTaskController::class)
+    ->name('projects.tasks.destroy');
