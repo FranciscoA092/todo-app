@@ -4,7 +4,9 @@ use App\Domains\Project\Controllers\IndexProjectController;
 use App\Domains\Project\Controllers\DestroyProjectController;
 use App\Domains\Project\Controllers\StoreProjectController;
 use App\Domains\Project\Controllers\UpdateProjectController;
+use App\Domains\Task\Controllers\IndexTaskController;
 use App\Domains\Task\Controllers\StoreTaskController;
+use App\Domains\Task\Controllers\UpdateTaskController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/projects', IndexProjectController::class)
@@ -21,3 +23,9 @@ Route::delete('/projects/{project}', DestroyProjectController::class)
 
 Route::post('/projects/{project}/tasks', StoreTaskController::class)
     ->name('projects.tasks.store');
+
+Route::get('/projects/{project}/tasks', IndexTaskController::class)
+    ->name('projects.tasks.index');
+
+Route::put('/projects/{project}/tasks/{task}', UpdateTaskController::class)
+    ->name('projects.tasks.update');
