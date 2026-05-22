@@ -1,9 +1,33 @@
 <script setup lang="ts">
-import AppLayout from '@/app/layouts/AppLayout.vue';
-import ButtonAddData from '@/components/ui/button/ButtonAddData.vue';
-import Text from '@/components/ui/typography/Text.vue';
-import ProjectCard from '@/features/projects/components/ProjectCard.vue';
+import AppLayout from '@/app/layouts/AppLayout.vue'
+import ButtonAddData from '@/components/ui/button/ButtonAddData.vue'
+import Text from '@/components/ui/typography/Text.vue'
+import { getProjects } from '@/features/projects/api/get-projects'
+import ModalProjectForm from '@/features/projects/components/ModalProjectForm.vue'
+import ProjectCard from '@/features/projects/components/ProjectCard/Index.vue'
+import ProjectCardSkeleton from '@/features/projects/components/ProjectCard/Skeleton.vue'
+import type { Project } from '@/features/projects/types/project'
+import { onMounted, reactive } from 'vue'
 
+const state = reactive({
+  loading: true,
+  openedModal: false,
+  projects: [] as Project[],
+})
+
+onMounted(async () => await requestProjects())
+
+async function requestProjects(page: number = 1) {
+  state.loading = true
+  try {
+    const { data } = await getProjects(page)
+    state.projects.push(...data.data)
+  } catch (error) {
+    console.error('Error fetching projects:', error)
+  } finally {
+    state.loading = false
+  }
+}
 </script>
 <template>
   <AppLayout title="Projetos">
@@ -12,16 +36,22 @@ import ProjectCard from '@/features/projects/components/ProjectCard.vue';
     </template>
 
     <div class="flex flex-col gap-4">
-      <ProjectCard :data="{
-        id: 1,
-        title: 'Apenas um teste de projeto',
-        description: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.',
-        created_at: new Date()
-      }" />
+      <ProjectCardSkeleton v-if="state.loading" v-for="i in 3" :key="`skeleton-${i}`" />
+      <ProjectCard v-else v-for="project in state.projects" :key="project.id" :data="project" />
 
-      <ButtonAddData label="Criar novo projeto" />
+      <ProjectCard
+        :active="true"
+        :data="{
+          id: 1,
+          title: 'Projeto de exemplo',
+          description: 'Este é um projeto de exemplo para demonstração.',
+          created_at: new Date(),
+        }"
+      />
 
-      <!-- <ProjectCard :active="true" /> -->
+      <ButtonAddData label="Criar novo projeto" @click="state.openedModal = true" />
+
+      <ModalProjectForm v-model="state.openedModal" />
     </div>
   </AppLayout>
 </template>

@@ -1,0 +1,5 @@
+{
+  "intelephense.environment.includePaths": [
+    "/Users/auris/Projects/study/todo-app/api/php-laravel-ai/vendor"
+  ]
+}

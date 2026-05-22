@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Plus } from 'lucide-vue-next';
+import { Plus } from 'lucide-vue-next'
 
 defineProps<{
   label: string
@@ -13,5 +13,5 @@ defineProps<{
       <Plus class="size-6 group-hover:text-primary" />
       <span class="font-semibold group-hover:text-primary">{{ label }}</span>
     </div>
-</div>
+  </div>
 </template>

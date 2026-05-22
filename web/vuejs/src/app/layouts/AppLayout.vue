@@ -1,9 +1,14 @@
 <script setup lang="ts">
-import Title from '@/components/ui/typography/Title.vue';
+import Title from '@/components/ui/typography/Title.vue'
+import { useColorMode } from '@vueuse/core'
 
 defineProps<{
   title: string
 }>()
+
+const mode = useColorMode()
+
+mode.value = 'dark'
 </script>
 <template>
   <div class="w-[600px] mx-auto flex flex-col">
