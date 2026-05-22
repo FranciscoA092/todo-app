@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /** @use HasFactory<TaskFactory> */
 #[Fillable(['title', 'description', 'status', 'project_id'])]
@@ -26,6 +27,11 @@ class Task extends Model
     public function project(): BelongsTo
     {
         return $this->belongsTo(Project::class);
+    }
+
+    public function runners(): HasMany
+    {
+        return $this->hasMany(Runner::class);
     }
 
     protected static function newFactory(): TaskFactory

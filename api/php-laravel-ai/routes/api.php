@@ -6,6 +6,7 @@ use App\Domains\Project\Controllers\StoreProjectController;
 use App\Domains\Project\Controllers\UpdateProjectController;
 use App\Domains\Task\Controllers\DestroyTaskController;
 use App\Domains\Task\Controllers\IndexTaskController;
+use App\Domains\Task\Controllers\StartTaskRunningController;
 use App\Domains\Task\Controllers\StoreTaskController;
 use App\Domains\Task\Controllers\UpdateTaskController;
 use Illuminate\Support\Facades\Route;
@@ -33,3 +34,6 @@ Route::put('/projects/{project}/tasks/{task}', UpdateTaskController::class)
 
 Route::delete('/projects/{project}/tasks/{task}', DestroyTaskController::class)
     ->name('projects.tasks.destroy');
+
+Route::post('/projects/{project}/tasks/{task}/start', StartTaskRunningController::class)
+    ->name('projects.tasks.start');
