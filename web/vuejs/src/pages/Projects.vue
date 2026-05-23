@@ -21,7 +21,14 @@ async function requestProjects(page: number = 1) {
   state.loading = true
   try {
     const { data } = await getProjects(page)
-    state.projects.push(...data.data)
+    state.projects.push(
+      ...data.data.map((i) => {
+        return {
+          ...i,
+          created_at: new Date(i.created_at),
+        }
+      }),
+    )
   } catch (error) {
     console.error('Error fetching projects:', error)
   } finally {
@@ -36,21 +43,9 @@ async function requestProjects(page: number = 1) {
     </template>
 
     <div class="flex flex-col gap-4">
+      <ButtonAddData label="Criar novo projeto" @click="state.openedModal = true" />
       <ProjectCardSkeleton v-if="state.loading" v-for="i in 3" :key="`skeleton-${i}`" />
       <ProjectCard v-else v-for="project in state.projects" :key="project.id" :data="project" />
-
-      <ProjectCard
-        :active="true"
-        :data="{
-          id: 1,
-          title: 'Projeto de exemplo',
-          description: 'Este é um projeto de exemplo para demonstração.',
-          created_at: new Date(),
-        }"
-      />
-
-      <ButtonAddData label="Criar novo projeto" @click="state.openedModal = true" />
-
       <ModalProjectForm v-model="state.openedModal" />
     </div>
   </AppLayout>

@@ -30,9 +30,9 @@ withDefaults(
 
     <Text class="line-clamp-2">{{ data.description }}</Text>
 
-    <div class="flex items-center gap-2">
+    <!-- <div class="flex items-center gap-2">
       <ListVideo class="size-4 text-primary" />
       <Text class="text-sm">3 runners</Text>
-    </div>
+    </div> -->
   </CardBox>
 </template>
