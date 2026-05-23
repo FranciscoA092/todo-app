@@ -10,14 +10,13 @@ Este repositório/projeto foi criado para fins de aplicabilidade de estudos rela
 
 ```json
 {
-    "primary": "#0CBE36",
-    "background": "#15181F",
-    "foreground": "#1A1E27",
-    "text": "#575D69",
-    "title": "#FFFFFF"
+  "primary": "#0CBE36",
+  "background": "#15181F",
+  "foreground": "#1A1E27",
+  "text": "#575D69",
+  "title": "#FFFFFF"
 }
 ```
-
 
 ### Objetivo
 
@@ -25,7 +24,7 @@ Implementar pequeno sistema web de lista de tarefas sempre utilizando arquitetur
 
 **Frontend**:
 
-[ ] VueJS
+🚧 VueJS
 
 [ ] NuxtJS
 
@@ -35,7 +34,7 @@ Implementar pequeno sistema web de lista de tarefas sempre utilizando arquitetur
 
 **Backend**:
 
-[ ] PHP Laravel
+✅ PHP Laravel
 
 [ ] NestJs
 
@@ -50,16 +49,16 @@ Implementar pequeno sistema web de lista de tarefas sempre utilizando arquitetur
 ### Funcionalidades
 
 - Projetos
-    - Cadastro
-    - Edição
-    - Exclusão
+  - Cadastro
+  - Edição
+  - Exclusão
 - Atividades
-    - Cadastro
-    - Edição
-    - Exclusão
-    - Play na execução
-    - Pause da execução
-    - Marcar como concluído
+  - Cadastro
+  - Edição
+  - Exclusão
+  - Play na execução
+  - Pause da execução
+  - Marcar como concluído
 
 #### Regras de negócio
 
@@ -67,7 +66,7 @@ Implementar pequeno sistema web de lista de tarefas sempre utilizando arquitetur
 
 2. Ações de Editar ou Excluir não devem ser permitidos caso alguma atividade esteja em execução do projeto.
 
-3. Aplicar a regra **2** para atividades, ações apenas em atividades sem execução atual. 
+3. Aplicar a regra **2** para atividades, ações apenas em atividades sem execução atual.
 
 4. Nas listagens na qual seu respectivo endpoint tenha resposta paginada deve ser utilizado o `infinite scroll` para carregamento de resultados.
 
@@ -101,9 +100,9 @@ Implementar pequeno sistema web de lista de tarefas sempre utilizando arquitetur
 
 ```json
 {
-    "title": "string|max:255|required",
-    "description": "text|required",
-    "created_at": "dateTime|auto"
+  "title": "string|max:255|required",
+  "description": "text|required",
+  "created_at": "dateTime|auto"
 }
 ```
 
@@ -132,5 +131,3 @@ Implementar pequeno sistema web de lista de tarefas sempre utilizando arquitetur
     "task_id": Task
 }
 ```
-
-
